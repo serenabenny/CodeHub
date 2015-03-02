@@ -50,6 +50,22 @@ namespace CodeHub.iOS.Views.App
             EnableButton.TouchUpInside += EnablePushNotifications;
 
             _hud = new Hud(View);
+
+            GetPrices();
+        }
+
+        private async void GetPrices()
+        {
+            try
+            {
+                var productData = await InAppPurchases.RequestProductData(FeatureIds.EnterpriseSupport);
+                if (productData.Products == null || productData.Products.Length == 0)
+                    return;
+                EnableButton.SetTitle("Yes! (" + productData.Products[0].LocalizedPrice() + ")", UIControlState.Normal);
+            }
+            catch
+            {
+            }
         }
 
         public override void ViewWillLayoutSubviews()

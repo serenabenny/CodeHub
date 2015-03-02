@@ -244,7 +244,7 @@ namespace CodeHub.iOS.Views.Issues
         {
             public string AvatarUrl { get; set; }
             public string Login { get; set; }
-            public DateTimeOffset CreatedAt { get; set; }
+            public DateTime CreatedAt { get; set; }
             public string Body { get; set; }
         }
     }

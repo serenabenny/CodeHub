@@ -23,7 +23,7 @@ namespace CodeHub.iOS.Views.Source
 				var desc = firstLine > 0 ? msg.Substring(0, firstLine) : msg;
 
 				string login;
-				var date = DateTimeOffset.MinValue;
+                var date = DateTime.MinValue;
            
                 if (x.Commit.Author != null && !string.IsNullOrEmpty(x.Commit.Author.Name))
                     login = x.Commit.Author.Name;

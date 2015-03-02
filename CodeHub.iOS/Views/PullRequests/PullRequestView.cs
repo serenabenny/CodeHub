@@ -258,7 +258,7 @@ namespace CodeHub.iOS.Views.PullRequests
 
             public string Login { get; set; }
 
-            public DateTimeOffset CreatedAt { get; set; }
+            public DateTime CreatedAt { get; set; }
 
             public string Body { get; set; }
         }
@@ -306,11 +306,12 @@ namespace CodeHub.iOS.Views.PullRequests
 
                 StyledStringElement el;
                 if (ViewModel.PullRequest.Mergable == null)
-                    el = new StyledStringElement("Merge".t(), mergeAction, Images.Fork);
+                    el = new StyledStringElement("Merge This Pull Request!".t(), mergeAction, Images.Fork);
                 else if (ViewModel.PullRequest.Mergable.Value)
-                    el = new StyledStringElement("Merge".t(), mergeAction, Images.Fork);
+                    el = new StyledStringElement("Merge This Pull Request!".t(), mergeAction, Images.Fork);
                 else
                     el = new StyledStringElement("Unable to merge!".t()) { Image = Images.Fork };
+                el.Accessory = UITableViewCellAccessory.None;
 
                 root.Add(new Section { el });
             }

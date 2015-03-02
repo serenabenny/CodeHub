@@ -91,10 +91,11 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
-    <MtouchUseThumb>true</MtouchUseThumb>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <DefineConstants>DEBUG</DefineConstants>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -105,7 +106,6 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <MtouchUseThumb>true</MtouchUseThumb>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -113,6 +113,8 @@
     <MtouchArch>ARMv7</MtouchArch>
     <BuildIpa>true</BuildIpa>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Images\Images.cs" />
@@ -226,10 +228,6 @@
     <InterfaceDefinition Include="Views\App\EnableEnterpriseViewController.xib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lib\CodeFramework\CodeFramework.iOS\CodeFramework.iOS.csproj">
-      <Project>{2698B412-26A3-4269-AA01-AC3BC79A0F14}</Project>
-      <Name>CodeFramework.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeHub.Core\CodeHub.Core.iOS.csproj">
       <Project>{B7970173-9022-466B-B57A-7AB1E1F3145F}</Project>
       <Name>CodeHub.Core.iOS</Name>
@@ -246,13 +244,17 @@
       <Project>{3FFBFFF8-5560-4EDE-82E5-3FFDFBBA8A50}</Project>
       <Name>MonoTouch.Dialog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\lib\CodeFramework\CodeFramework.iOS\lib\monotouch-uservoice\UserVoice\UserVoice.csproj">
-      <Project>{3A0C5D98-D568-43C1-A877-B1BA00BA4A87}</Project>
-      <Name>UserVoice</Name>
-    </ProjectReference>
     <ProjectReference Include="..\lib\CodeFramework\CodeFramework.Core\CodeFramework.Core.csproj">
       <Project>{C99FE7E3-0985-48F1-9EBB-91680A795F0F}</Project>
       <Name>CodeFramework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CodeFramework\CodeFramework.iOS\CodeFramework.iOS.csproj">
+      <Project>{2698B412-26A3-4269-AA01-AC3BC79A0F14}</Project>
+      <Name>CodeFramework.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CodeFramework\CodeFramework.iOS\lib\monotouch-uservoice\UserVoice\UserVoice.csproj">
+      <Project>{3A0C5D98-D568-43C1-A877-B1BA00BA4A87}</Project>
+      <Name>UserVoice</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
