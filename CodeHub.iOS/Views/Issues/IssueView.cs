@@ -2,7 +2,7 @@ using System;
 using CodeFramework.iOS.Views;
 using CodeHub.Core.ViewModels.Issues;
 using GitHubSharp.Models;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.iOS.ViewControllers;
 using MonoTouch.Dialog;
 using CodeFramework.iOS.Utils;
@@ -152,7 +152,7 @@ namespace CodeHub.iOS.Views.Issues
         {
             get
             {
-                var u = new UIView(new System.Drawing.RectangleF(0, 0, 320f, 27)) { BackgroundColor = UIColor.White };
+                var u = new UIView(new CoreGraphics.CGRect(0, 0, 320f, 27)) { BackgroundColor = UIColor.White };
                 return u;
             }
         }

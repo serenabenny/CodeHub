@@ -1,8 +1,8 @@
 using System;
 using CodeFramework.iOS.Views;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.Core.ViewModels;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace CodeHub.iOS.Views.Source
 {

@@ -1,7 +1,7 @@
 using System;
 using CodeFramework.iOS.Views;
 using CodeHub.Core.ViewModels.Accounts;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Text;
 
 namespace CodeHub.iOS.Views.Accounts
@@ -18,7 +18,7 @@ namespace CodeHub.iOS.Views.Accounts
             : base(false)
         {
             Title = "Login";
-			NavigationItem.RightBarButtonItem = new MonoTouch.UIKit.UIBarButtonItem(MonoTouch.UIKit.UIBarButtonSystemItem.Action, (s, e) => ShowExtraMenu());
+			NavigationItem.RightBarButtonItem = new UIKit.UIBarButtonItem(UIKit.UIBarButtonSystemItem.Action, (s, e) => ShowExtraMenu());
         }
 
 		private void ShowExtraMenu()
@@ -81,7 +81,7 @@ namespace CodeHub.iOS.Views.Accounts
 			alert.Show();
 		}
 
-		protected override bool ShouldStartLoad(MonoTouch.Foundation.NSUrlRequest request, MonoTouch.UIKit.UIWebViewNavigationType navigationType)
+		protected override bool ShouldStartLoad(Foundation.NSUrlRequest request, UIKit.UIWebViewNavigationType navigationType)
         {
             //We're being redirected to our redirect URL so we must have been successful
             if (request.Url.Host == "dillonbuchanan.com")
@@ -138,10 +138,10 @@ namespace CodeHub.iOS.Views.Accounts
         private void LoadRequest()
         {
             //Remove all cookies & cache
-            foreach (var c in MonoTouch.Foundation.NSHttpCookieStorage.SharedStorage.Cookies)
-                MonoTouch.Foundation.NSHttpCookieStorage.SharedStorage.DeleteCookie(c);
-            MonoTouch.Foundation.NSUrlCache.SharedCache.RemoveAllCachedResponses();
-			Web.LoadRequest(new MonoTouch.Foundation.NSUrlRequest(new MonoTouch.Foundation.NSUrl(ViewModel.LoginUrl)));
+            foreach (var c in Foundation.NSHttpCookieStorage.SharedStorage.Cookies)
+                Foundation.NSHttpCookieStorage.SharedStorage.DeleteCookie(c);
+            Foundation.NSUrlCache.SharedCache.RemoveAllCachedResponses();
+			Web.LoadRequest(new Foundation.NSUrlRequest(new Foundation.NSUrl(ViewModel.LoginUrl)));
         }
     }
 }

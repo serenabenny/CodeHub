@@ -3,7 +3,7 @@ using MonoTouch.Dialog;
 using CodeHub.Core.ViewModels.Issues;
 using GitHubSharp.Models;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.iOS.Utils;
 
 namespace CodeHub.iOS.Views.Issues
@@ -87,11 +87,11 @@ namespace CodeHub.iOS.Views.Issues
 					var greenB = System.Convert.ToByte(green, 16);
 					var BlueB = System.Convert.ToByte(blue, 16);
 
-					var size = new System.Drawing.SizeF(24f, 24f);
+					var size = new CoreGraphics.CGSize(24f, 24f);
 
 					UIGraphics.BeginImageContext(size);
 					UIColor.FromRGB(redB, greenB, BlueB).SetFill();
-					GraphicsUtil.FillRoundedRect(UIGraphics.GetCurrentContext(), new System.Drawing.RectangleF(0, 0, size.Width, size.Height), 6f);
+					GraphicsUtil.FillRoundedRect(UIGraphics.GetCurrentContext(), new CoreGraphics.CGRect(0, 0, size.Width, size.Height), 6f);
 					var image = UIGraphics.GetImageFromCurrentImageContext();
 					UIGraphics.EndImageContext();
 					return image;

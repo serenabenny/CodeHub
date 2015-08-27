@@ -5,7 +5,7 @@ using CodeFramework.iOS.ViewControllers;
 using CodeFramework.iOS.Views;
 using CodeHub.Core.ViewModels.PullRequests;
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.iOS.Utils;
 
 namespace CodeHub.iOS.Views.PullRequests
@@ -25,8 +25,14 @@ namespace CodeHub.iOS.Views.PullRequests
         {
             Root.UnevenRows = true;
             _header = new HeaderView() { ShadowImage = false };
-			_split1 = new SplitElement(new SplitElement.Row { Image1 = Images.Cog, Image2 = Images.Merge });
-			_split2 = new SplitElement(new SplitElement.Row { Image1 = Images.Person, Image2 = Images.Create });
+
+            _split1 = new SplitElement();
+            _split1.Button1 = new SplitElement.SplitButton(Images.Cog, string.Empty);
+            _split1.Button2 = new SplitElement.SplitButton(Images.Merge, string.Empty);
+
+            _split2 = new SplitElement();
+            _split2.Button1 = new SplitElement.SplitButton(Images.Person, string.Empty);
+            _split2.Button2 = new SplitElement.SplitButton(Images.Create, string.Empty);
         }
 
         public override void ViewDidLoad()
@@ -69,11 +75,11 @@ namespace CodeHub.iOS.Views.PullRequests
 
             var merged = (ViewModel.PullRequest.Merged != null && ViewModel.PullRequest.Merged.Value);
 
-            _split1.Value.Text1 = ViewModel.PullRequest.State;
-            _split1.Value.Text2 = merged ? "Merged" : "Not Merged";
+            _split1.Button1.Text = ViewModel.PullRequest.State;
+            _split1.Button2.Text = merged ? "Merged" : "Not Merged";
 
-			_split2.Value.Text1 = ViewModel.PullRequest.User.Login;
-			_split2.Value.Text2 = ViewModel.PullRequest.CreatedAt.ToString("MM/dd/yy");
+            _split2.Button1.Text = ViewModel.PullRequest.User.Login;
+            _split2.Button2.Text = ViewModel.PullRequest.CreatedAt.ToString("MM/dd/yy");
 
 			secDetails.Add(_split2);
             secDetails.Add(_split1);
@@ -86,7 +92,7 @@ namespace CodeHub.iOS.Views.PullRequests
 
             if (!merged)
             {
-                MonoTouch.Foundation.NSAction mergeAction = async () =>
+                Action mergeAction = async () =>
                 {
                     try
                     {
@@ -179,7 +185,7 @@ namespace CodeHub.iOS.Views.PullRequests
         {
             get
             {
-                var u = new UIView(new System.Drawing.RectangleF(0, 0, 320f, 27)) { BackgroundColor = UIColor.White };
+                var u = new UIView(new CoreGraphics.CGRect(0, 0, 320f, 27)) { BackgroundColor = UIColor.White };
                 return u;
             }
         }

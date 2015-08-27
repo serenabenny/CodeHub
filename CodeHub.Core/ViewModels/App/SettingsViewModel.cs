@@ -1,4 +1,4 @@
-﻿using CodeFramework.Core.ViewModels;
+using CodeFramework.Core.ViewModels;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Linq;

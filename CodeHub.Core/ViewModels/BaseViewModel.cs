@@ -1,0 +1,73 @@
+using System;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.ViewModels;
+using CodeFramework.Core.Services;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using System.Windows.Input;
+using CodeFramework.Core.Messages;
+
+namespace CodeFramework.Core.ViewModels
+{
+    /// <summary>
+    ///    Defines the BaseViewModel type.
+    /// </summary>
+    public abstract class BaseViewModel : MvxViewModel
+    {
+		/// <summary>
+		/// Gets the go to URL command.
+		/// </summary>
+		/// <value>The go to URL command.</value>
+		public ICommand GoToUrlCommand
+		{
+			get { return new MvxCommand<string>(x => ShowViewModel<WebBrowserViewModel>(new WebBrowserViewModel.NavObject { Url = x })); }
+		}
+
+		/// <summary>
+		/// Gets the ViewModelTxService
+		/// </summary>
+		/// <value>The tx sevice.</value>
+		protected IViewModelTxService TxSevice
+		{
+			get { return GetService<IViewModelTxService>(); }
+		}
+
+		/// <summary>
+		/// Gets the messenger service
+		/// </summary>
+		/// <value>The messenger.</value>
+		protected IMvxMessenger Messenger
+		{
+			get { return GetService<IMvxMessenger>(); }
+		}
+
+        /// <summary>
+        /// Gets the service.
+        /// </summary>
+        /// <typeparam name="TService">The type of the service.</typeparam>
+        /// <returns>An instance of the service.</returns>
+		protected TService GetService<TService>() where TService : class
+        {
+            return Mvx.Resolve<TService>();
+        }
+
+		/// <summary>
+		/// Displays the exception to the view
+		/// </summary>
+		/// <param name="e">E.</param>
+		protected void DisplayException(Exception e)
+		{
+            GetService<IAlertDialogService>().Alert("Error", e.Message);
+		}
+
+		/// <summary>
+		/// Reports the error by displaying it and reporting it to analytics
+		/// </summary>
+		/// <param name="e">E.</param>
+        protected void ReportError(Exception e)
+        {
+			DisplayException(e);
+			e.Report();
+            Messenger.Publish(new ErrorMessage(this, e));
+        }
+    }
+}

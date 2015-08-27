@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <summary>
 //    Defines the Setup type.
 // </summary>
@@ -13,7 +13,7 @@ using CodeFramework.Core.ViewModels;
 using CodeFramework.iOS;
 using MonoTouch.Dialog;
 using CodeFramework.iOS.Views;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.iOS.Bindings;
 
 namespace CodeHub.iOS

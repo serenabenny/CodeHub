@@ -6,8 +6,8 @@ using CodeHub.Core.ViewModels.Repositories;
 using GitHubSharp.Models;
 using MonoTouch.Dialog;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace CodeHub.iOS.Views.Repositories
 {
@@ -147,12 +147,10 @@ namespace CodeHub.iOS.Views.Repositories
                 sec1.Add(element);
             }
 
-            sec1.Add(new SplitElement(new SplitElement.Row {
-                Text1 = model.Private ? "Private".t() : "Public".t(),
-                Image1 = model.Private ? Images.Locked : Images.Unlocked,
-				Text2 = model.Language ?? "N/A",
-                Image2 = Images.Language
-            }));
+            var splitElement1 = new SplitElement();
+            splitElement1.Button1 = new SplitElement.SplitButton(model.Private ? Images.Locked : Images.Unlocked, model.Private ? "Private" : "Public");
+            splitElement1.Button2 = new SplitElement.SplitButton(Images.Language, model.Language ?? "N/A");
+            sec1.Add(splitElement1);
 
 
             //Calculate the best representation of the size
@@ -164,19 +162,16 @@ namespace CodeHub.iOS.Views.Repositories
             else
                 size = string.Format("{0:0.##}GB", model.Size / 1024f / 1024f);
 
-            sec1.Add(new SplitElement(new SplitElement.Row {
-                Text1 = model.OpenIssues + (model.OpenIssues == 1 ? " Issue".t() : " Issues".t()),
-                Image1 = Images.Flag,
-                Text2 = model.Forks.ToString() + (model.Forks == 1 ? " Fork".t() : " Forks".t()),
-                Image2 = Images.Fork
-            }));
 
-            sec1.Add(new SplitElement(new SplitElement.Row {
-                Text1 = (model.CreatedAt).ToString("MM/dd/yy"),
-                Image1 = Images.Create,
-                Text2 = size,
-                Image2 = Images.Size
-            }));
+            var splitElement2 = new SplitElement();
+            splitElement2.Button1 = new SplitElement.SplitButton(Images.Flag, model.OpenIssues + (model.OpenIssues == 1 ? " Issue" : " Issues"));
+            splitElement2.Button2 = new SplitElement.SplitButton(Images.Fork, model.Forks + (model.Forks == 1 ? " Fork" : " Forks"));
+            sec1.Add(splitElement2);
+
+            var splitElement3 = new SplitElement();
+            splitElement3.Button1 = new SplitElement.SplitButton(Images.Create, (model.CreatedAt).ToString("MM/dd/yy"));
+            splitElement3.Button2 = new SplitElement.SplitButton(Images.Size, size);
+            sec1.Add(splitElement3);
 
             var owner = new StyledStringElement("Owner".t(), model.Owner.Login) { Image = Images.Person,  Accessory = UITableViewCellAccessory.DisclosureIndicator };
 			owner.Tapped += () => ViewModel.GoToOwnerCommand.Execute(null);

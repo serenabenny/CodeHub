@@ -21,11 +21,11 @@ namespace CodeHub.iOS.Views.Repositories
         {
             base.ViewDidLoad();
             ViewModel.Bind(x => x.Path, x => LoadFile(x));
-			NavigationItem.RightBarButtonItem = new MonoTouch.UIKit.UIBarButtonItem(MonoTouch.UIKit.UIBarButtonSystemItem.Action, (s, e) => ShareButtonPress());
+			NavigationItem.RightBarButtonItem = new UIKit.UIBarButtonItem(UIKit.UIBarButtonSystemItem.Action, (s, e) => ShareButtonPress());
 			ViewModel.LoadCommand.Execute(false);
         }
 
-		protected override bool ShouldStartLoad(MonoTouch.Foundation.NSUrlRequest request, MonoTouch.UIKit.UIWebViewNavigationType navigationType)
+		protected override bool ShouldStartLoad(Foundation.NSUrlRequest request, UIKit.UIWebViewNavigationType navigationType)
 		{
 			if (!request.Url.AbsoluteString.StartsWith("file://", System.StringComparison.Ordinal))
 			{

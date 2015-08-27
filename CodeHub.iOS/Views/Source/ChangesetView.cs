@@ -4,10 +4,10 @@ using CodeFramework.iOS.ViewControllers;
 using CodeFramework.iOS.Views;
 using CodeHub.Core.ViewModels;
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 using CodeFramework.iOS.Utils;
 using System.Linq;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace CodeHub.iOS.Views.Source
 {
@@ -68,7 +68,7 @@ namespace CodeHub.iOS.Views.Source
             if (ViewModel.ShowRepository)
             {
                 var repo = new StyledStringElement(ViewModel.Repository) { 
-                    Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator, 
+                    Accessory = UIKit.UITableViewCellAccessory.DisclosureIndicator, 
                     Lines = 1, 
                     Font = StyledStringElement.DefaultDetailFont, 
                     TextColor = StyledStringElement.DefaultDetailColor,
@@ -185,7 +185,7 @@ namespace CodeHub.iOS.Views.Source
 					else if (e.ButtonIndex == shareButton)
 					{
 						var item = new NSUrl(ViewModel.Changeset.Url);
-						var activityItems = new MonoTouch.Foundation.NSObject[] { item };
+						var activityItems = new Foundation.NSObject[] { item };
 						UIActivity[] applicationActivities = null;
 						var activityController = new UIActivityViewController (activityItems, applicationActivities);
 						PresentViewController (activityController, true, null);

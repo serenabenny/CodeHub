@@ -1,4 +1,4 @@
-﻿using CodeHub.Core.Data;
+using CodeHub.Core.Data;
 using System.Threading.Tasks;
 
 namespace CodeHub.Core.Services
@@ -9,7 +9,7 @@ namespace CodeHub.Core.Services
 
 		Task<GitHubSharp.Client> LoginAccount(GitHubAccount account);
 
-		LoginData Authenticate(string domain, string user, string pass, string twoFactor, bool enterprise, GitHubAccount existingAccount);
+		Task<LoginData> Authenticate(string domain, string user, string pass, string twoFactor, bool enterprise, GitHubAccount existingAccount);
     }
 
 	public class LoginData

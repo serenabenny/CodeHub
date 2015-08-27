@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <summary>
 //    Defines the AppDelegate type.
 // </summary>
@@ -10,8 +10,8 @@ using System;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.ViewModels;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using CodeFramework.Core.Utils;
 using CodeHub.Core.Services;
 using System.Threading;
@@ -56,9 +56,6 @@ namespace CodeHub.iOS
         /// <returns>True or false.</returns>
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-			var iRate = MTiRate.iRate.SharedInstance;
-			iRate.AppStoreID = 707173885;
-
 			this.window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             // Setup theme
@@ -93,7 +90,7 @@ namespace CodeHub.iOS
             var features = Mvx.Resolve<IFeaturesService>();
 
 			// Notifications don't work on teh simulator so don't bother
-            if (MonoTouch.ObjCRuntime.Runtime.Arch != MonoTouch.ObjCRuntime.Arch.SIMULATOR && features.IsPushNotificationsActivated)
+            if (ObjCRuntime.Runtime.Arch != ObjCRuntime.Arch.SIMULATOR && features.IsPushNotificationsActivated)
 			{
 				const UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
 				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);

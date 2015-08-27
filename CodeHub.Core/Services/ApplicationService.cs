@@ -1,4 +1,4 @@
-﻿using Cirrious.MvvmCross.ViewModels;
+using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Views;
 using CodeFramework.Core.Data;
 using CodeFramework.Core.Services;
@@ -126,6 +126,16 @@ namespace CodeHub.Core.Services
             public GitHubCache(Account account)
             {
                 _account = account.Cache;
+            }
+
+            public T Get<T>(string url)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Set<T>(string url, T data)
+            {
+                throw new NotImplementedException();
             }
 
             public string GetETag(string url)
