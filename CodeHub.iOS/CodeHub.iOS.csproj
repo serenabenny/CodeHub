@@ -131,7 +131,6 @@
     <Compile Include="Views\Accounts\AddAccountView.designer.cs">
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\App\AboutViewController.cs" />
     <Compile Include="Views\App\MenuView.cs" />
     <Compile Include="Views\App\SettingsView.cs" />
     <Compile Include="Views\Events\NewsView.cs" />
@@ -274,7 +273,6 @@
     <Compile Include="Services\DefaultValueService.cs" />
     <Compile Include="Services\HttpClientService.cs" />
     <Compile Include="Services\ShareService.cs" />
-    <Compile Include="Services\UIThreadService.cs" />
     <Compile Include="TouchViewPresenter.cs" />
     <Compile Include="Elements\ChangesetElement.cs" />
     <Compile Include="Elements\CommentElement.cs" />
@@ -295,7 +293,6 @@
     <Compile Include="Cells\RepositoryCellView.designer.cs">
       <DependentUpon>..\..\lib\CodeFramework\CodeFramework.iOS\Cells\RepositoryCellView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bindings\UISegmentControlBinding.cs" />
     <None Include="packages.config" />
     <InterfaceDefinition Include="Views\Accounts\NewAccountView.xib" />
     <InterfaceDefinition Include="Views\Accounts\AddAccountView.xib" />
@@ -326,6 +323,7 @@
     <Compile Include="Elements\Elements.cs" />
     <Compile Include="Elements\LoadMoreElement.cs" />
     <Compile Include="Elements\OwnerDrawnElement.cs" />
+    <Compile Include="Views\App\AboutView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -543,5 +541,8 @@
       <Version>1.16</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bindings\" />
   </ItemGroup>
 </Project>

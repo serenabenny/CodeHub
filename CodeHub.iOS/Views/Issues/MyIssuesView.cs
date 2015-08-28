@@ -28,8 +28,11 @@ namespace CodeHub.iOS.Views.Issues
 
 			BindCollection(vm.Issues, CreateElement);
 			var set = this.CreateBindingSet<MyIssuesView, MyIssuesViewModel>();
-			set.Bind(_viewSegment).To(x => x.SelectedFilter);
 			set.Apply();
+
+
+            _viewSegment.SelectedSegment = vm.SelectedFilter;
+            _viewSegment.ValueChanged += (sender, e) => vm.SelectedFilter = (int)_viewSegment.SelectedSegment;
         }
 
         public override void ViewWillAppear(bool animated)

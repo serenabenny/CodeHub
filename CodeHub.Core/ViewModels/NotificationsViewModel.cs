@@ -21,7 +21,7 @@ namespace CodeHub.Core.ViewModels
 		private ICommand _readAllCommand;
 		private ICommand _readCommand;
 		private ICommand _readReposCommand;
-		private int _shownIndex;
+        private nint _shownIndex;
 		private bool _isMarking;
 
         public FilterableCollectionViewModel<NotificationModel, NotificationsFilterModel> Notifications
@@ -29,10 +29,10 @@ namespace CodeHub.Core.ViewModels
             get { return _notifications; }
         }
 
-		public int ShownIndex
+		public nint ShownIndex
 		{
 			get { return _shownIndex; }
-			private set
+			set
 			{
 				_shownIndex = value;
 				RaisePropertyChanged(() => ShownIndex);

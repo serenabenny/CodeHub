@@ -9,7 +9,7 @@ namespace CodeFramework.iOS.Services
         public T Get<T>(string key)
         {
             if (typeof(T) == typeof(int))
-                return (T)(object)Utilities.Defaults.IntForKey(key);
+                return (T)(object)(int)Utilities.Defaults.IntForKey(key);
             if (typeof(T) == typeof(bool))
                 return (T)(object)Utilities.Defaults.BoolForKey(key);
             throw new Exception("Key does not exist in Default database.");

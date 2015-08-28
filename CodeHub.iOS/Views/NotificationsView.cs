@@ -64,8 +64,10 @@ namespace CodeHub.iOS.Views
             });
 
             var set = this.CreateBindingSet<NotificationsView, NotificationsViewModel>();
-            set.Bind(_viewSegment).To(x => x.ShownIndex);
             set.Apply();
+
+            _viewSegment.SelectedSegment = vm.ShownIndex;
+            _viewSegment.ValueChanged += (sender, e) => vm.ShownIndex = _viewSegment.SelectedSegment;
         }
 
         protected override Section CreateSection(string text)

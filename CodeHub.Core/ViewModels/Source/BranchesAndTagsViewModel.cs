@@ -2,16 +2,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using CodeFramework.Core.ViewModels;
-using CodeHub.Core.Services;
 using GitHubSharp.Models;
 using System.Linq;
+using System;
 
 namespace CodeHub.Core.ViewModels.Source
 {
 	public class BranchesAndTagsViewModel : LoadableViewModel
 	{
-		private int _selectedFilter;
-		public int SelectedFilter
+		private nint _selectedFilter;
+		public nint SelectedFilter
 		{
 			get { return _selectedFilter; }
 			set 

@@ -4,6 +4,7 @@ using Cirrious.MvvmCross.ViewModels;
 using CodeFramework.Core.ViewModels;
 using CodeHub.Core.Filters;
 using GitHubSharp.Models;
+using System;
 
 namespace CodeHub.Core.ViewModels.PullRequests
 {
@@ -19,8 +20,8 @@ namespace CodeHub.Core.ViewModels.PullRequests
 
         public string Repository { get; private set; }
 
-		private int _selectedFilter;
-		public int SelectedFilter
+		private nint _selectedFilter;
+		public nint SelectedFilter
 		{
 			get { return _selectedFilter; }
 			set 

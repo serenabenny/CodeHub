@@ -163,7 +163,6 @@
     <Compile Include="Services\IHttpClientService.cs" />
     <Compile Include="Services\IJsonSerializationService.cs" />
     <Compile Include="Services\IShareService.cs" />
-    <Compile Include="Services\IUIThreadService.cs" />
     <Compile Include="Services\IViewModelTxService.cs" />
     <Compile Include="Services\ViewModelTxService.cs" />
     <Compile Include="Utils\CrashReporting.cs" />
@@ -178,9 +177,7 @@
     <Compile Include="Utils\SimpleJson.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="PresentationValues.cs" />
-    <Compile Include="Setup.cs" />
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="LinkerPleaseInclude.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

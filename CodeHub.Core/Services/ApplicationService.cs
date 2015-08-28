@@ -56,7 +56,7 @@ namespace CodeHub.Core.Services
             CheckCacheSize(account.Cache);
 
             //Assign the cache
-            Client.Cache = new GitHubCache(account);
+            //Client.Cache = new GitHubCache(account);
 
             // Show the menu & show a page on the slideout
             _viewDispatcher.ShowViewModel(new MvxViewModelRequest {ViewModelType = typeof (MenuViewModel)});

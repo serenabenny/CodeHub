@@ -2331,7 +2331,6 @@ namespace MonoTouch.Dialog
 				
 				TableView = null;
 				Clear ();
-				Sections = null;
 			}
 		}
 		

@@ -9,9 +9,12 @@ using System.Collections.Generic;
 using CodeFramework.Core.Services;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using Foundation;
 
 public static class ViewModelExtensions
 {
+    private static readonly NSObject _obj = new NSObject();
+
     public static Task RequestModel<TRequest>(this MvxViewModel viewModel, GitHubRequest<TRequest> request, bool forceDataRefresh, Action<GitHubResponse<TRequest>> update) where TRequest : new()
     {
         if (forceDataRefresh)
@@ -21,12 +24,11 @@ public static class ViewModelExtensions
         }
 
         var application = Mvx.Resolve<IApplicationService>();
-        var uiThrad = Mvx.Resolve<IUIThreadService>();
 
 		return Task.Run(async () =>
         {
 			var result = await application.Client.ExecuteAsync(request).ConfigureAwait(false);
-            uiThrad.MarshalOnUIThread(() => update(result));
+            _obj.InvokeOnMainThread(() => update(result));
 
             if (result.WasCached)
             {
@@ -37,7 +39,7 @@ public static class ViewModelExtensions
                     try
                     {
 						var r = await application.Client.ExecuteAsync(request).ConfigureAwait(false);
-                        uiThrad.MarshalOnUIThread(() => update(r));
+                        _obj.InvokeOnMainThread(() => update(r));
                     }
 					catch (NotModifiedException)
 					{

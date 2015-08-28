@@ -26,8 +26,10 @@ namespace CodeHub.iOS.Views.Source
 			var vm = (BranchesAndTagsViewModel)ViewModel;
 			this.BindCollection(vm.Items, x => new StyledStringElement(x.Name, () => vm.GoToSourceCommand.Execute(x)));
 			var set = this.CreateBindingSet<BranchesAndTagsView, BranchesAndTagsViewModel>();
-			set.Bind(_viewSegment).To(x => x.SelectedFilter);
 			set.Apply();
+
+            _viewSegment.SelectedSegment = vm.SelectedFilter;
+            _viewSegment.ValueChanged += (sender, e) => vm.SelectedFilter = _viewSegment.SelectedSegment;
 		}
 
 		public override void ViewWillAppear(bool animated)

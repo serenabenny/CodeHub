@@ -103,8 +103,8 @@ namespace CodeHub.iOS.Views.Accounts
 			base.OnLoadError(sender, e);
 
 			//Frame interrupted error
-			if (e.Error.Code == 102)
-				return;
+            if (e.Error.Code == 102 || e.Error.Code == -999)
+                return;
 
 			if (ViewModel.IsEnterprise)
 				MonoTouch.Utilities.ShowAlert("Error", "Unable to communicate with GitHub with given Url. " + e.Error.LocalizedDescription, Stuff);

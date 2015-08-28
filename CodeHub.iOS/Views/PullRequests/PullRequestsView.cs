@@ -30,8 +30,10 @@ namespace CodeHub.iOS.Views.PullRequests
 			var vm = (PullRequestsViewModel)ViewModel;
             _segmentBarButton.Width = View.Frame.Width - 10f;
 			var set = this.CreateBindingSet<PullRequestsView, PullRequestsViewModel>();
-			set.Bind(_viewSegment).To(x => x.SelectedFilter);
 			set.Apply();
+
+            _viewSegment.SelectedSegment = vm.SelectedFilter;
+            _viewSegment.ValueChanged += (sender, e) => vm.SelectedFilter = _viewSegment.SelectedSegment;
 
 			BindCollection(vm.PullRequests, s =>
             {

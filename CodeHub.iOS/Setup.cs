@@ -14,7 +14,6 @@ using CodeFramework.iOS;
 using MonoTouch.Dialog;
 using CodeFramework.iOS.Views;
 using UIKit;
-using CodeFramework.iOS.Bindings;
 
 namespace CodeHub.iOS
 {
@@ -37,22 +36,6 @@ namespace CodeHub.iOS
         {
         }
 
-        protected override Assembly[] GetViewAssemblies()
-        {
-            var list = new List<Assembly>();
-            list.AddRange(base.GetViewAssemblies());
-            list.Add(typeof(StartupView).Assembly);
-            return list.ToArray();
-        }
-
-        protected override Assembly[] GetViewModelAssemblies()
-        {
-            var list = new List<Assembly>();
-            list.AddRange(base.GetViewModelAssemblies());
-			list.Add(typeof(BaseStartupViewModel).Assembly);
-            return list.ToArray();
-        }
-
         protected override Cirrious.CrossCore.Platform.IMvxTrace CreateDebugTrace()
         {
 			return new Cirrious.CrossCore.Platform.MvxDebugOnlyTrace();
@@ -60,16 +43,10 @@ namespace CodeHub.iOS
 
         protected override void FillBindingNames(IMvxBindingNameRegistry obj)
         {
+            obj.AddOrOverwrite(typeof(StyledStringElement), "Tapped");
+            obj.AddOrOverwrite(typeof(UISegmentedControl), "ValueChanged");
             base.FillBindingNames(obj);
-			obj.AddOrOverwrite(typeof(StyledStringElement), "Tapped");
-			obj.AddOrOverwrite(typeof(UISegmentedControl), "ValueChanged");
         }
-
-		protected override void FillTargetFactories(Cirrious.MvvmCross.Binding.Bindings.Target.Construction.IMvxTargetBindingFactoryRegistry registry)
-		{
-			base.FillTargetFactories(registry);
-			registry.RegisterFactory(new Cirrious.MvvmCross.Binding.Bindings.Target.Construction.MvxCustomBindingFactory<UISegmentedControl>("ValueChanged", x => new UISegmentControlBinding(x)));
-		}
 
         /// <summary>
         /// Creates the app.
@@ -83,16 +60,6 @@ namespace CodeHub.iOS
                 .RegisterAsLazySingleton();
 
             this.CreatableTypes(typeof(TouchViewPresenter).Assembly)
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-
-            this.CreatableTypes(typeof(Core.App).Assembly)
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-
-            this.CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();

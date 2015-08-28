@@ -6,13 +6,13 @@ using CodeFramework.iOS.ViewControllers;
 
 namespace CodeHub.iOS.Views.App
 {
-	public class AboutViewController : ViewModelDrivenDialogViewController
+	public class AboutView : ViewModelDrivenDialogViewController
     {
         private const string About = @"CodeHub is the best way to browse and maintain your GitHub repositories on any iPhone, iPod Touch, and iPad device! " +
             "Keep an eye on your projects with the ability to view everything from pull requests to commenting on individual file diffs in the latest change set. " + 
             "CodeHub brings GitHub to your finger tips in a sleek and efficient design." + "\n\nCreated By Dillon Buchanan";
 
-        public AboutViewController()
+        public AboutView()
             : base (true)
         {
 			Title = "About".t();
